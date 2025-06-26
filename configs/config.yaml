@@ -1,0 +1,22 @@
+server:
+  http:
+    addr: 0.0.0.0:8000
+    timeout: 1s
+  grpc:
+    addr: 0.0.0.0:9000
+    timeout: 1s
+data:
+  database:
+    driver: mysql
+    source: admin:nissan123@tcp(127.0.0.1:3306)/awstorm_ops?parseTime=True&loc=Local
+  redis:
+    addr: 127.0.0.1:6379
+    read_timeout: 0.2s
+    write_timeout: 0.2s
+
+
+# 秘钥
+config:
+  secretkey:  
+    jwtkey: "fp9aGrLzaBg"
+    passwdkey: "yLcTKVyWyssTsTsg"
