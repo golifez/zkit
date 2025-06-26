@@ -20,7 +20,7 @@ import (
 
 // go build -ldflags "-X main.Version=x.y.z"
 var (
-	// Name is the name of the compiled software.
+	// Name is the name of the compiled software.2
 	Name string
 	// Version is the version of the compiled software.
 	Version string
