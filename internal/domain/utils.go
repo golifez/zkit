@@ -1,7 +1,7 @@
 package domain
 
 import (
-	pb "github.com/golifez/zkit/api/auth/v1"
+	pb "github.com/golifez/zkit/api/zkitauth/v1"
 )
 
 type Jwt struct {

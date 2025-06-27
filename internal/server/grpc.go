@@ -1,7 +1,7 @@
 package server
 
 import (
-	v1 "github.com/golifez/zkit/api/auth/v1"
+	v1 "github.com/golifez/zkit/api/zkitauth/v1"
 	"github.com/golifez/zkit/internal/conf"
 	"github.com/golifez/zkit/internal/service"
 

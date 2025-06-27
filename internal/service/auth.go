@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	pb "github.com/golifez/zkit/api/auth/v1"
+	pb "github.com/golifez/zkit/api/zkitauth/v1"
 	"github.com/golifez/zkit/internal/biz"
 	"github.com/golifez/zkit/internal/domain"
 
