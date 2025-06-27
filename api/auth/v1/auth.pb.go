@@ -246,7 +246,7 @@ const file_api_auth_v1_auth_proto_rawDesc = "" +
 	"\amessage\x18\x02 \x01(\tR\amessage2\x92\x01\n" +
 	"\vAuthService\x12<\n" +
 	"\bGenToken\x12\x18.auth.v1.GenTokenRequest\x1a\x16.auth.v1.GenTokenReply\x12E\n" +
-	"\vVerifyToken\x12\x1b.auth.v1.VerifyTokenRequest\x1a\x19.auth.v1.VerifyTokenReplyB\x1bZ\x19awStormOps/api/auth/v1;v1b\x06proto3"
+	"\vVerifyToken\x12\x1b.auth.v1.VerifyTokenRequest\x1a\x19.auth.v1.VerifyTokenReplyB(Z&github.com/golifez/zkit/api/auth/v1;v1b\x06proto3"
 
 var (
 	file_api_auth_v1_auth_proto_rawDescOnce sync.Once

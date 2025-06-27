@@ -36,7 +36,7 @@ func init() {
 
 func newApp(logger log.Logger, gs *grpc.Server, hs *http.Server, rr registry.Registrar, registry *conf.Registry) *kratos.App {
 	return kratos.New(
-		kratos.ID(id),
+		kratos.ID(registry.Consul.Servername),
 		kratos.Name(registry.Consul.Servername),
 		kratos.Version(Version),
 		kratos.Metadata(map[string]string{}),
