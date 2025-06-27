@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.3
-// source: api/auth/v1/auth.proto
+// source: api/zkitauth/v1/auth.proto
 
 package v1
 
@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AuthService_GenToken_FullMethodName    = "/auth.v1.AuthService/GenToken"
-	AuthService_VerifyToken_FullMethodName = "/auth.v1.AuthService/VerifyToken"
+	AuthService_GenToken_FullMethodName    = "/zkitauth.v1.AuthService/GenToken"
+	AuthService_VerifyToken_FullMethodName = "/zkitauth.v1.AuthService/VerifyToken"
 )
 
 // AuthServiceClient is the client API for AuthService service.
@@ -142,7 +142,7 @@ func _AuthService_VerifyToken_Handler(srv interface{}, ctx context.Context, dec 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AuthService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.v1.AuthService",
+	ServiceName: "zkitauth.v1.AuthService",
 	HandlerType: (*AuthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -155,5 +155,5 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/auth/v1/auth.proto",
+	Metadata: "api/zkitauth/v1/auth.proto",
 }

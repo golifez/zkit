@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package auth.v1;
+package zkitauth.v1;
 
 // import "google/api/annotations.proto";
 
-option go_package = "github.com/golifez/zkit/api/auth/v1;v1";
+option go_package = "github.com/golifez/zkit/api/zkitauth/v1;v1";
 
 
 service AuthService {

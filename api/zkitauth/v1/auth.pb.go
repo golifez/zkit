@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v5.29.3
-// source: api/auth/v1/auth.proto
+// source: api/zkitauth/v1/auth.proto
 
 package v1
 
@@ -32,7 +32,7 @@ type GenTokenRequest struct {
 
 func (x *GenTokenRequest) Reset() {
 	*x = GenTokenRequest{}
-	mi := &file_api_auth_v1_auth_proto_msgTypes[0]
+	mi := &file_api_zkitauth_v1_auth_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +44,7 @@ func (x *GenTokenRequest) String() string {
 func (*GenTokenRequest) ProtoMessage() {}
 
 func (x *GenTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_auth_v1_auth_proto_msgTypes[0]
+	mi := &file_api_zkitauth_v1_auth_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +57,7 @@ func (x *GenTokenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenTokenRequest.ProtoReflect.Descriptor instead.
 func (*GenTokenRequest) Descriptor() ([]byte, []int) {
-	return file_api_auth_v1_auth_proto_rawDescGZIP(), []int{0}
+	return file_api_zkitauth_v1_auth_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *GenTokenRequest) GetKey() string {
@@ -85,7 +85,7 @@ type GenTokenReply struct {
 
 func (x *GenTokenReply) Reset() {
 	*x = GenTokenReply{}
-	mi := &file_api_auth_v1_auth_proto_msgTypes[1]
+	mi := &file_api_zkitauth_v1_auth_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -97,7 +97,7 @@ func (x *GenTokenReply) String() string {
 func (*GenTokenReply) ProtoMessage() {}
 
 func (x *GenTokenReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_auth_v1_auth_proto_msgTypes[1]
+	mi := &file_api_zkitauth_v1_auth_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -110,7 +110,7 @@ func (x *GenTokenReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenTokenReply.ProtoReflect.Descriptor instead.
 func (*GenTokenReply) Descriptor() ([]byte, []int) {
-	return file_api_auth_v1_auth_proto_rawDescGZIP(), []int{1}
+	return file_api_zkitauth_v1_auth_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GenTokenReply) GetToken() string {
@@ -137,7 +137,7 @@ type VerifyTokenRequest struct {
 
 func (x *VerifyTokenRequest) Reset() {
 	*x = VerifyTokenRequest{}
-	mi := &file_api_auth_v1_auth_proto_msgTypes[2]
+	mi := &file_api_zkitauth_v1_auth_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -149,7 +149,7 @@ func (x *VerifyTokenRequest) String() string {
 func (*VerifyTokenRequest) ProtoMessage() {}
 
 func (x *VerifyTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_auth_v1_auth_proto_msgTypes[2]
+	mi := &file_api_zkitauth_v1_auth_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -162,7 +162,7 @@ func (x *VerifyTokenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyTokenRequest.ProtoReflect.Descriptor instead.
 func (*VerifyTokenRequest) Descriptor() ([]byte, []int) {
-	return file_api_auth_v1_auth_proto_rawDescGZIP(), []int{2}
+	return file_api_zkitauth_v1_auth_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *VerifyTokenRequest) GetToken() string {
@@ -183,7 +183,7 @@ type VerifyTokenReply struct {
 
 func (x *VerifyTokenReply) Reset() {
 	*x = VerifyTokenReply{}
-	mi := &file_api_auth_v1_auth_proto_msgTypes[3]
+	mi := &file_api_zkitauth_v1_auth_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -195,7 +195,7 @@ func (x *VerifyTokenReply) String() string {
 func (*VerifyTokenReply) ProtoMessage() {}
 
 func (x *VerifyTokenReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_auth_v1_auth_proto_msgTypes[3]
+	mi := &file_api_zkitauth_v1_auth_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -208,7 +208,7 @@ func (x *VerifyTokenReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyTokenReply.ProtoReflect.Descriptor instead.
 func (*VerifyTokenReply) Descriptor() ([]byte, []int) {
-	return file_api_auth_v1_auth_proto_rawDescGZIP(), []int{3}
+	return file_api_zkitauth_v1_auth_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *VerifyTokenReply) GetUid() string {
@@ -225,14 +225,14 @@ func (x *VerifyTokenReply) GetMessage() string {
 	return ""
 }
 
-var File_api_auth_v1_auth_proto protoreflect.FileDescriptor
+var File_api_zkitauth_v1_auth_proto protoreflect.FileDescriptor
 
-const file_api_auth_v1_auth_proto_rawDesc = "" +
+const file_api_zkitauth_v1_auth_proto_rawDesc = "" +
 	"\n" +
-	"\x16api/auth/v1/auth.proto\x12\aauth.v1\"\x9c\x01\n" +
+	"\x1aapi/zkitauth/v1/auth.proto\x12\vzkitauth.v1\"\xa0\x01\n" +
 	"\x0fGenTokenRequest\x12\x10\n" +
-	"\x03key\x18\x02 \x01(\tR\x03key\x12<\n" +
-	"\x06claims\x18\x03 \x03(\v2$.auth.v1.GenTokenRequest.ClaimsEntryR\x06claims\x1a9\n" +
+	"\x03key\x18\x02 \x01(\tR\x03key\x12@\n" +
+	"\x06claims\x18\x03 \x03(\v2(.zkitauth.v1.GenTokenRequest.ClaimsEntryR\x06claims\x1a9\n" +
 	"\vClaimsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"?\n" +
@@ -243,37 +243,37 @@ const file_api_auth_v1_auth_proto_rawDesc = "" +
 	"\x05token\x18\x01 \x01(\tR\x05token\">\n" +
 	"\x10VerifyTokenReply\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\x92\x01\n" +
-	"\vAuthService\x12<\n" +
-	"\bGenToken\x12\x18.auth.v1.GenTokenRequest\x1a\x16.auth.v1.GenTokenReply\x12E\n" +
-	"\vVerifyToken\x12\x1b.auth.v1.VerifyTokenRequest\x1a\x19.auth.v1.VerifyTokenReplyB(Z&github.com/golifez/zkit/api/auth/v1;v1b\x06proto3"
+	"\amessage\x18\x02 \x01(\tR\amessage2\xa2\x01\n" +
+	"\vAuthService\x12D\n" +
+	"\bGenToken\x12\x1c.zkitauth.v1.GenTokenRequest\x1a\x1a.zkitauth.v1.GenTokenReply\x12M\n" +
+	"\vVerifyToken\x12\x1f.zkitauth.v1.VerifyTokenRequest\x1a\x1d.zkitauth.v1.VerifyTokenReplyB,Z*github.com/golifez/zkit/api/zkitauth/v1;v1b\x06proto3"
 
 var (
-	file_api_auth_v1_auth_proto_rawDescOnce sync.Once
-	file_api_auth_v1_auth_proto_rawDescData []byte
+	file_api_zkitauth_v1_auth_proto_rawDescOnce sync.Once
+	file_api_zkitauth_v1_auth_proto_rawDescData []byte
 )
 
-func file_api_auth_v1_auth_proto_rawDescGZIP() []byte {
-	file_api_auth_v1_auth_proto_rawDescOnce.Do(func() {
-		file_api_auth_v1_auth_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_auth_v1_auth_proto_rawDesc), len(file_api_auth_v1_auth_proto_rawDesc)))
+func file_api_zkitauth_v1_auth_proto_rawDescGZIP() []byte {
+	file_api_zkitauth_v1_auth_proto_rawDescOnce.Do(func() {
+		file_api_zkitauth_v1_auth_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_zkitauth_v1_auth_proto_rawDesc), len(file_api_zkitauth_v1_auth_proto_rawDesc)))
 	})
-	return file_api_auth_v1_auth_proto_rawDescData
+	return file_api_zkitauth_v1_auth_proto_rawDescData
 }
 
-var file_api_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
-var file_api_auth_v1_auth_proto_goTypes = []any{
-	(*GenTokenRequest)(nil),    // 0: auth.v1.GenTokenRequest
-	(*GenTokenReply)(nil),      // 1: auth.v1.GenTokenReply
-	(*VerifyTokenRequest)(nil), // 2: auth.v1.VerifyTokenRequest
-	(*VerifyTokenReply)(nil),   // 3: auth.v1.VerifyTokenReply
-	nil,                        // 4: auth.v1.GenTokenRequest.ClaimsEntry
+var file_api_zkitauth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_api_zkitauth_v1_auth_proto_goTypes = []any{
+	(*GenTokenRequest)(nil),    // 0: zkitauth.v1.GenTokenRequest
+	(*GenTokenReply)(nil),      // 1: zkitauth.v1.GenTokenReply
+	(*VerifyTokenRequest)(nil), // 2: zkitauth.v1.VerifyTokenRequest
+	(*VerifyTokenReply)(nil),   // 3: zkitauth.v1.VerifyTokenReply
+	nil,                        // 4: zkitauth.v1.GenTokenRequest.ClaimsEntry
 }
-var file_api_auth_v1_auth_proto_depIdxs = []int32{
-	4, // 0: auth.v1.GenTokenRequest.claims:type_name -> auth.v1.GenTokenRequest.ClaimsEntry
-	0, // 1: auth.v1.AuthService.GenToken:input_type -> auth.v1.GenTokenRequest
-	2, // 2: auth.v1.AuthService.VerifyToken:input_type -> auth.v1.VerifyTokenRequest
-	1, // 3: auth.v1.AuthService.GenToken:output_type -> auth.v1.GenTokenReply
-	3, // 4: auth.v1.AuthService.VerifyToken:output_type -> auth.v1.VerifyTokenReply
+var file_api_zkitauth_v1_auth_proto_depIdxs = []int32{
+	4, // 0: zkitauth.v1.GenTokenRequest.claims:type_name -> zkitauth.v1.GenTokenRequest.ClaimsEntry
+	0, // 1: zkitauth.v1.AuthService.GenToken:input_type -> zkitauth.v1.GenTokenRequest
+	2, // 2: zkitauth.v1.AuthService.VerifyToken:input_type -> zkitauth.v1.VerifyTokenRequest
+	1, // 3: zkitauth.v1.AuthService.GenToken:output_type -> zkitauth.v1.GenTokenReply
+	3, // 4: zkitauth.v1.AuthService.VerifyToken:output_type -> zkitauth.v1.VerifyTokenReply
 	3, // [3:5] is the sub-list for method output_type
 	1, // [1:3] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -281,26 +281,26 @@ var file_api_auth_v1_auth_proto_depIdxs = []int32{
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_api_auth_v1_auth_proto_init() }
-func file_api_auth_v1_auth_proto_init() {
-	if File_api_auth_v1_auth_proto != nil {
+func init() { file_api_zkitauth_v1_auth_proto_init() }
+func file_api_zkitauth_v1_auth_proto_init() {
+	if File_api_zkitauth_v1_auth_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_auth_v1_auth_proto_rawDesc), len(file_api_auth_v1_auth_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_zkitauth_v1_auth_proto_rawDesc), len(file_api_zkitauth_v1_auth_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_api_auth_v1_auth_proto_goTypes,
-		DependencyIndexes: file_api_auth_v1_auth_proto_depIdxs,
-		MessageInfos:      file_api_auth_v1_auth_proto_msgTypes,
+		GoTypes:           file_api_zkitauth_v1_auth_proto_goTypes,
+		DependencyIndexes: file_api_zkitauth_v1_auth_proto_depIdxs,
+		MessageInfos:      file_api_zkitauth_v1_auth_proto_msgTypes,
 	}.Build()
-	File_api_auth_v1_auth_proto = out.File
-	file_api_auth_v1_auth_proto_goTypes = nil
-	file_api_auth_v1_auth_proto_depIdxs = nil
+	File_api_zkitauth_v1_auth_proto = out.File
+	file_api_zkitauth_v1_auth_proto_goTypes = nil
+	file_api_zkitauth_v1_auth_proto_depIdxs = nil
 }
