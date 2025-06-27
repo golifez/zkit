@@ -4,16 +4,16 @@ import (
 	"flag"
 	"os"
 
-	"github.com/golifez/zkit/internal/conf"
-
 	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/config"
 	"github.com/go-kratos/kratos/v2/config/file"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/tracing"
+	"github.com/go-kratos/kratos/v2/registry"
 	"github.com/go-kratos/kratos/v2/transport/grpc"
 	"github.com/go-kratos/kratos/v2/transport/http"
-	"gopkg.in/yaml.v3"
+	"github.com/golifez/zkit/internal/conf"
+	"gopkg.in/yaml.v2"
 
 	_ "go.uber.org/automaxprocs"
 )
@@ -34,10 +34,10 @@ func init() {
 	flag.StringVar(&flagconf, "conf", "../../configs", "config path, eg: -conf config.yaml")
 }
 
-func newApp(logger log.Logger, gs *grpc.Server, hs *http.Server) *kratos.App {
+func newApp(logger log.Logger, gs *grpc.Server, hs *http.Server, rr registry.Registrar, registry *conf.Registry) *kratos.App {
 	return kratos.New(
 		kratos.ID(id),
-		kratos.Name(Name),
+		kratos.Name(registry.Consul.Servername),
 		kratos.Version(Version),
 		kratos.Metadata(map[string]string{}),
 		kratos.Logger(logger),
@@ -45,6 +45,7 @@ func newApp(logger log.Logger, gs *grpc.Server, hs *http.Server) *kratos.App {
 			gs,
 			hs,
 		),
+		kratos.Registrar(rr),
 	)
 }
 
@@ -78,7 +79,12 @@ func main() {
 		panic(err)
 	}
 	log.Infof("config loaded: %v", bc)
-	app, cleanup, err := wireApp(bc.Server, bc.Data, bc.Config, logger)
+	app, cleanup, err := wireApp(
+		bc.Server,
+		bc.Data,
+		bc.Config,
+		bc.Registry,
+		logger)
 	if err != nil {
 		panic(err)
 	}

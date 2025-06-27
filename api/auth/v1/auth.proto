@@ -2,50 +2,35 @@ syntax = "proto3";
 
 package auth.v1;
 
-import "google/api/annotations.proto";
+// import "google/api/annotations.proto";
 
 option go_package = "awStormOps/api/auth/v1;v1";
 
-// 定义一个 Auth service，包含 login 和 register 两个方法
-service Auth {
-  // 登录接口
-  rpc Login(LoginRequest) returns (LoginReply) {
-    option (google.api.http) = {
-        post: "/auth/login"
-        body: "*"
-    };
-  }
-  
-  // 注册接口
-  rpc Register(RegisterRequest) returns (RegisterReply) {
-    option (google.api.http) = {
-        post: "/auth/register"
-        body: "*"
-    };
-  }
+
+service AuthService {
+  rpc GenToken(GenTokenRequest) returns (GenTokenReply); // 生成token
+  rpc VerifyToken(VerifyTokenRequest) returns (VerifyTokenReply); // 验证token
 }
 
-// 登录请求
-message LoginRequest {
-  string username = 1;
-  string password = 2;
+//获取token 使用jwtv5.SigningMethodHS256加密
+message GenTokenRequest {
+  string key = 2;
+  map<string, string> claims = 3;
 }
 
-// 登录响应
-message LoginReply {
+//获取token
+message GenTokenReply {
   string token = 1;
   string message = 2;
 }
 
-// 注册请求
-message RegisterRequest {
-  string username = 1;
-  string password = 2;
-  string nickname = 3;
+//验证token
+message VerifyTokenRequest {
+  string token = 1;
 }
 
-// 注册响应
-message RegisterReply {
-  int32 code = 1;
+//验证token
+message VerifyTokenReply {
+  string uid = 1;
   string message = 2;
 }

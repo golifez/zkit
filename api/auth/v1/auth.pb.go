@@ -7,7 +7,6 @@
 package v1
 
 import (
-	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -22,29 +21,29 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// 登录请求
-type LoginRequest struct {
+// 获取token 使用jwtv5.SigningMethodHS256加密
+type GenTokenRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	Key           string                 `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
+	Claims        map[string]string      `protobuf:"bytes,3,rep,name=claims,proto3" json:"claims,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *LoginRequest) Reset() {
-	*x = LoginRequest{}
+func (x *GenTokenRequest) Reset() {
+	*x = GenTokenRequest{}
 	mi := &file_api_auth_v1_auth_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *LoginRequest) String() string {
+func (x *GenTokenRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*LoginRequest) ProtoMessage() {}
+func (*GenTokenRequest) ProtoMessage() {}
 
-func (x *LoginRequest) ProtoReflect() protoreflect.Message {
+func (x *GenTokenRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_api_auth_v1_auth_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -56,27 +55,27 @@ func (x *LoginRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use LoginRequest.ProtoReflect.Descriptor instead.
-func (*LoginRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GenTokenRequest.ProtoReflect.Descriptor instead.
+func (*GenTokenRequest) Descriptor() ([]byte, []int) {
 	return file_api_auth_v1_auth_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *LoginRequest) GetUsername() string {
+func (x *GenTokenRequest) GetKey() string {
 	if x != nil {
-		return x.Username
+		return x.Key
 	}
 	return ""
 }
 
-func (x *LoginRequest) GetPassword() string {
+func (x *GenTokenRequest) GetClaims() map[string]string {
 	if x != nil {
-		return x.Password
+		return x.Claims
 	}
-	return ""
+	return nil
 }
 
-// 登录响应
-type LoginReply struct {
+// 获取token
+type GenTokenReply struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -84,20 +83,20 @@ type LoginReply struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *LoginReply) Reset() {
-	*x = LoginReply{}
+func (x *GenTokenReply) Reset() {
+	*x = GenTokenReply{}
 	mi := &file_api_auth_v1_auth_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *LoginReply) String() string {
+func (x *GenTokenReply) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*LoginReply) ProtoMessage() {}
+func (*GenTokenReply) ProtoMessage() {}
 
-func (x *LoginReply) ProtoReflect() protoreflect.Message {
+func (x *GenTokenReply) ProtoReflect() protoreflect.Message {
 	mi := &file_api_auth_v1_auth_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -109,49 +108,47 @@ func (x *LoginReply) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use LoginReply.ProtoReflect.Descriptor instead.
-func (*LoginReply) Descriptor() ([]byte, []int) {
+// Deprecated: Use GenTokenReply.ProtoReflect.Descriptor instead.
+func (*GenTokenReply) Descriptor() ([]byte, []int) {
 	return file_api_auth_v1_auth_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *LoginReply) GetToken() string {
+func (x *GenTokenReply) GetToken() string {
 	if x != nil {
 		return x.Token
 	}
 	return ""
 }
 
-func (x *LoginReply) GetMessage() string {
+func (x *GenTokenReply) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-// 注册请求
-type RegisterRequest struct {
+// 验证token
+type VerifyTokenRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	Nickname      string                 `protobuf:"bytes,3,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RegisterRequest) Reset() {
-	*x = RegisterRequest{}
+func (x *VerifyTokenRequest) Reset() {
+	*x = VerifyTokenRequest{}
 	mi := &file_api_auth_v1_auth_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RegisterRequest) String() string {
+func (x *VerifyTokenRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RegisterRequest) ProtoMessage() {}
+func (*VerifyTokenRequest) ProtoMessage() {}
 
-func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
+func (x *VerifyTokenRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_api_auth_v1_auth_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -163,55 +160,41 @@ func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RegisterRequest.ProtoReflect.Descriptor instead.
-func (*RegisterRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use VerifyTokenRequest.ProtoReflect.Descriptor instead.
+func (*VerifyTokenRequest) Descriptor() ([]byte, []int) {
 	return file_api_auth_v1_auth_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *RegisterRequest) GetUsername() string {
+func (x *VerifyTokenRequest) GetToken() string {
 	if x != nil {
-		return x.Username
+		return x.Token
 	}
 	return ""
 }
 
-func (x *RegisterRequest) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
-}
-
-func (x *RegisterRequest) GetNickname() string {
-	if x != nil {
-		return x.Nickname
-	}
-	return ""
-}
-
-// 注册响应
-type RegisterReply struct {
+// 验证token
+type VerifyTokenReply struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Code          int32                  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RegisterReply) Reset() {
-	*x = RegisterReply{}
+func (x *VerifyTokenReply) Reset() {
+	*x = VerifyTokenReply{}
 	mi := &file_api_auth_v1_auth_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RegisterReply) String() string {
+func (x *VerifyTokenReply) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RegisterReply) ProtoMessage() {}
+func (*VerifyTokenReply) ProtoMessage() {}
 
-func (x *RegisterReply) ProtoReflect() protoreflect.Message {
+func (x *VerifyTokenReply) ProtoReflect() protoreflect.Message {
 	mi := &file_api_auth_v1_auth_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -223,19 +206,19 @@ func (x *RegisterReply) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RegisterReply.ProtoReflect.Descriptor instead.
-func (*RegisterReply) Descriptor() ([]byte, []int) {
+// Deprecated: Use VerifyTokenReply.ProtoReflect.Descriptor instead.
+func (*VerifyTokenReply) Descriptor() ([]byte, []int) {
 	return file_api_auth_v1_auth_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *RegisterReply) GetCode() int32 {
+func (x *VerifyTokenReply) GetUid() string {
 	if x != nil {
-		return x.Code
+		return x.Uid
 	}
-	return 0
+	return ""
 }
 
-func (x *RegisterReply) GetMessage() string {
+func (x *VerifyTokenReply) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
@@ -246,24 +229,24 @@ var File_api_auth_v1_auth_proto protoreflect.FileDescriptor
 
 const file_api_auth_v1_auth_proto_rawDesc = "" +
 	"\n" +
-	"\x16api/auth/v1/auth.proto\x12\aauth.v1\x1a\x1cgoogle/api/annotations.proto\"F\n" +
-	"\fLoginRequest\x12\x1a\n" +
-	"\busername\x18\x01 \x01(\tR\busername\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"<\n" +
-	"\n" +
-	"LoginReply\x12\x14\n" +
+	"\x16api/auth/v1/auth.proto\x12\aauth.v1\"\x9c\x01\n" +
+	"\x0fGenTokenRequest\x12\x10\n" +
+	"\x03key\x18\x02 \x01(\tR\x03key\x12<\n" +
+	"\x06claims\x18\x03 \x03(\v2$.auth.v1.GenTokenRequest.ClaimsEntryR\x06claims\x1a9\n" +
+	"\vClaimsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"?\n" +
+	"\rGenTokenReply\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"e\n" +
-	"\x0fRegisterRequest\x12\x1a\n" +
-	"\busername\x18\x01 \x01(\tR\busername\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x1a\n" +
-	"\bnickname\x18\x03 \x01(\tR\bnickname\"=\n" +
-	"\rRegisterReply\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\xac\x01\n" +
-	"\x04Auth\x12K\n" +
-	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x13.auth.v1.LoginReply\"\x16\x82\xd3\xe4\x93\x02\x10:\x01*\"\v/auth/login\x12W\n" +
-	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x16.auth.v1.RegisterReply\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/auth/registerB\x1bZ\x19awStormOps/api/auth/v1;v1b\x06proto3"
+	"\amessage\x18\x02 \x01(\tR\amessage\"*\n" +
+	"\x12VerifyTokenRequest\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\">\n" +
+	"\x10VerifyTokenReply\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage2\x92\x01\n" +
+	"\vAuthService\x12<\n" +
+	"\bGenToken\x12\x18.auth.v1.GenTokenRequest\x1a\x16.auth.v1.GenTokenReply\x12E\n" +
+	"\vVerifyToken\x12\x1b.auth.v1.VerifyTokenRequest\x1a\x19.auth.v1.VerifyTokenReplyB\x1bZ\x19awStormOps/api/auth/v1;v1b\x06proto3"
 
 var (
 	file_api_auth_v1_auth_proto_rawDescOnce sync.Once
@@ -277,23 +260,25 @@ func file_api_auth_v1_auth_proto_rawDescGZIP() []byte {
 	return file_api_auth_v1_auth_proto_rawDescData
 }
 
-var file_api_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_api_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_api_auth_v1_auth_proto_goTypes = []any{
-	(*LoginRequest)(nil),    // 0: auth.v1.LoginRequest
-	(*LoginReply)(nil),      // 1: auth.v1.LoginReply
-	(*RegisterRequest)(nil), // 2: auth.v1.RegisterRequest
-	(*RegisterReply)(nil),   // 3: auth.v1.RegisterReply
+	(*GenTokenRequest)(nil),    // 0: auth.v1.GenTokenRequest
+	(*GenTokenReply)(nil),      // 1: auth.v1.GenTokenReply
+	(*VerifyTokenRequest)(nil), // 2: auth.v1.VerifyTokenRequest
+	(*VerifyTokenReply)(nil),   // 3: auth.v1.VerifyTokenReply
+	nil,                        // 4: auth.v1.GenTokenRequest.ClaimsEntry
 }
 var file_api_auth_v1_auth_proto_depIdxs = []int32{
-	0, // 0: auth.v1.Auth.Login:input_type -> auth.v1.LoginRequest
-	2, // 1: auth.v1.Auth.Register:input_type -> auth.v1.RegisterRequest
-	1, // 2: auth.v1.Auth.Login:output_type -> auth.v1.LoginReply
-	3, // 3: auth.v1.Auth.Register:output_type -> auth.v1.RegisterReply
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	4, // 0: auth.v1.GenTokenRequest.claims:type_name -> auth.v1.GenTokenRequest.ClaimsEntry
+	0, // 1: auth.v1.AuthService.GenToken:input_type -> auth.v1.GenTokenRequest
+	2, // 2: auth.v1.AuthService.VerifyToken:input_type -> auth.v1.VerifyTokenRequest
+	1, // 3: auth.v1.AuthService.GenToken:output_type -> auth.v1.GenTokenReply
+	3, // 4: auth.v1.AuthService.VerifyToken:output_type -> auth.v1.VerifyTokenReply
+	3, // [3:5] is the sub-list for method output_type
+	1, // [1:3] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_api_auth_v1_auth_proto_init() }
@@ -307,7 +292,7 @@ func file_api_auth_v1_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_auth_v1_auth_proto_rawDesc), len(file_api_auth_v1_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

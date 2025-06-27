@@ -11,7 +11,6 @@ import (
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/golifez/zkit/internal/biz"
 	"github.com/golifez/zkit/internal/conf"
-	"github.com/golifez/zkit/internal/data"
 	"github.com/golifez/zkit/internal/server"
 	"github.com/golifez/zkit/internal/service"
 )
@@ -23,23 +22,15 @@ import (
 // Injectors from wire.go:
 
 // wireApp init kratos application.
-func wireApp(confServer *conf.Server, confData *conf.Data, config *conf.Config, logger log.Logger) (*kratos.App, func(), error) {
-	client := data.NewEntClinet(confData, logger)
-	dataData, cleanup, err := data.NewData(client, logger)
-	if err != nil {
-		return nil, nil, err
-	}
-	greeterRepo := data.NewGreeterRepo(dataData, logger)
-	greeterUsecase := biz.NewGreeterUsecase(greeterRepo, logger)
-	greeterService := service.NewGreeterService(greeterUsecase, logger)
-	grpcServer := server.NewGRPCServer(confServer, greeterService, logger)
-	autherRepo := data.NewAutherRepo(dataData, config, logger)
-	autherUsecase := biz.NewAutherUsecase(autherRepo, config, logger)
+func wireApp(confServer *conf.Server, data *conf.Data, config *conf.Config, registry *conf.Registry, logger log.Logger) (*kratos.App, func(), error) {
+	autherUsecase := biz.NewAutherUsecase(config, logger)
 	authService := service.NewAuthService(autherUsecase, logger)
+	serviceGrpcContainer := server.NewServiceGrpcContainer(authService)
+	grpcServer := server.NewGRPCServer(confServer, serviceGrpcContainer, logger)
 	serviceContainer := server.NewServiceContainer(authService)
 	httpServer := server.NewHTTPServer(confServer, config, serviceContainer, logger)
-	app := newApp(logger, grpcServer, httpServer)
+	registrar := server.NewRegistrar(registry)
+	app := newApp(logger, grpcServer, httpServer, registrar, registry)
 	return app, func() {
-		cleanup()
 	}, nil
 }

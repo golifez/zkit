@@ -3,7 +3,6 @@ package server
 import (
 	"context"
 
-	v1 "github.com/golifez/zkit/api/auth/v1"
 	"github.com/golifez/zkit/internal/conf"
 	"github.com/golifez/zkit/internal/service"
 
@@ -65,7 +64,7 @@ func NewHTTPServer(c *conf.Server, cg *conf.Config, service *ServiceContainer, l
 		opts = append(opts, http.Timeout(c.Http.Timeout.AsDuration()))
 	}
 	srv := http.NewServer(opts...)
-	v1.RegisterAuthHTTPServer(srv, service.AuthService)
+	// v1.RegisterAuthHTTPServer(srv, service.AuthService)
 	// v1.RegisterRegisterHTTPServer(srv, login)
 	// v2.RegisterShopHTTPServer(srv, s)
 	return srv

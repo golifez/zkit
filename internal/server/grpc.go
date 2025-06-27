@@ -1,7 +1,7 @@
 package server
 
 import (
-	v1 "github.com/golifez/zkit/api/helloworld/v1"
+	v1 "github.com/golifez/zkit/api/auth/v1"
 	"github.com/golifez/zkit/internal/conf"
 	"github.com/golifez/zkit/internal/service"
 
@@ -10,8 +10,25 @@ import (
 	"github.com/go-kratos/kratos/v2/transport/grpc"
 )
 
+type ServiceGrpcContainer struct {
+	AuthService *service.AuthService
+	// UserService  *service.UserService
+	// 其他服务...
+}
+
+func NewServiceGrpcContainer(
+	auth *service.AuthService,
+	// register *service.RegisterService,
+	// 其他服务...
+) *ServiceGrpcContainer {
+	return &ServiceGrpcContainer{
+		AuthService: auth,
+		// UserService:  user,
+	}
+}
+
 // NewGRPCServer new a gRPC server.
-func NewGRPCServer(c *conf.Server, greeter *service.GreeterService, logger log.Logger) *grpc.Server {
+func NewGRPCServer(c *conf.Server, sc *ServiceGrpcContainer, logger log.Logger) *grpc.Server {
 	var opts = []grpc.ServerOption{
 		grpc.Middleware(
 			recovery.Recovery(),
@@ -27,6 +44,6 @@ func NewGRPCServer(c *conf.Server, greeter *service.GreeterService, logger log.L
 		opts = append(opts, grpc.Timeout(c.Grpc.Timeout.AsDuration()))
 	}
 	srv := grpc.NewServer(opts...)
-	v1.RegisterGreeterServer(srv, greeter)
+	v1.RegisterAuthServiceServer(srv, sc.AuthService)
 	return srv
 }
