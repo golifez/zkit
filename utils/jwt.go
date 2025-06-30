@@ -19,7 +19,6 @@ func NewJwt() *jwt {
 // 获取token
 func (j *jwt) GetToken(claims map[string]interface{}, key string) (token string) {
 	jclm := jwtv5.MapClaims{}
-
 	for k, v := range claims {
 		if v != nil {
 			jclm[k] = v
