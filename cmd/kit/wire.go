@@ -33,7 +33,7 @@ func wireApp(
 		// utils.ProviderSet,
 
 		// 基础设施层
-		client.ProviderSet,
+		client.ClientProviderSet,
 		server.SrvProviderSet,
 
 		// 数据访问层

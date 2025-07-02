@@ -47,7 +47,8 @@ func (a *AwsIamRepo) AddAkSecret(ctx context.Context, iam *domain.AwsIam) error 
 		return errs.ErrDataAlreadyExists
 	}
 	// 不存在则创建
-	_, err = a.data.DB.Aws_iam.Create().SetAccountID(iam.AccountId).
+	_, err = a.data.DB.Aws_iam.Create().
+		SetAccountID(iam.AccountId).
 		SetAccessKey(iam.AccessKey).
 		SetSecretKey(iam.SecretKey).Save(ctx)
 	if err != nil {

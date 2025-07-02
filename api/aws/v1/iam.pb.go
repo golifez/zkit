@@ -24,7 +24,7 @@ const (
 // 创建角色
 type CreateRoleRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AwsService    string                 `protobuf:"bytes,1,opt,name=AwsService,proto3" json:"AwsService,omitempty"`
+	AccountId     string                 `protobuf:"bytes,1,opt,name=AccountId,proto3" json:"AccountId,omitempty"`
 	RoleName      string                 `protobuf:"bytes,2,opt,name=RoleName,proto3" json:"RoleName,omitempty"`
 	RoleDesc      string                 `protobuf:"bytes,3,opt,name=RoleDesc,proto3" json:"RoleDesc,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -61,9 +61,9 @@ func (*CreateRoleRequest) Descriptor() ([]byte, []int) {
 	return file_api_aws_v1_iam_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CreateRoleRequest) GetAwsService() string {
+func (x *CreateRoleRequest) GetAccountId() string {
 	if x != nil {
-		return x.AwsService
+		return x.AccountId
 	}
 	return ""
 }
@@ -129,9 +129,10 @@ func (x *CreateRoleReply) GetMessage() string {
 // 添加AK秘钥
 type AddAkSecretRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AconutId      string                 `protobuf:"bytes,1,opt,name=AconutId,proto3" json:"AconutId,omitempty"`
-	AccessKey     string                 `protobuf:"bytes,2,opt,name=AccessKey,proto3" json:"AccessKey,omitempty"`
-	SecretKey     string                 `protobuf:"bytes,3,opt,name=SecretKey,proto3" json:"SecretKey,omitempty"`
+	Uid           string                 `protobuf:"bytes,1,opt,name=Uid,proto3" json:"Uid,omitempty"`             //用户的唯一ID
+	AccountId     string                 `protobuf:"bytes,2,opt,name=AccountId,proto3" json:"AccountId,omitempty"` //AWS服务名称
+	AccessKey     string                 `protobuf:"bytes,3,opt,name=AccessKey,proto3" json:"AccessKey,omitempty"`
+	SecretKey     string                 `protobuf:"bytes,4,opt,name=SecretKey,proto3" json:"SecretKey,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -166,9 +167,16 @@ func (*AddAkSecretRequest) Descriptor() ([]byte, []int) {
 	return file_api_aws_v1_iam_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *AddAkSecretRequest) GetAconutId() string {
+func (x *AddAkSecretRequest) GetUid() string {
 	if x != nil {
-		return x.AconutId
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *AddAkSecretRequest) GetAccountId() string {
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
@@ -235,19 +243,18 @@ var File_api_aws_v1_iam_proto protoreflect.FileDescriptor
 
 const file_api_aws_v1_iam_proto_rawDesc = "" +
 	"\n" +
-	"\x14api/aws/v1/iam.proto\x12\x06aws.v1\"k\n" +
-	"\x11CreateRoleRequest\x12\x1e\n" +
-	"\n" +
-	"AwsService\x18\x01 \x01(\tR\n" +
-	"AwsService\x12\x1a\n" +
+	"\x14api/aws/v1/iam.proto\x12\x06aws.v1\"i\n" +
+	"\x11CreateRoleRequest\x12\x1c\n" +
+	"\tAccountId\x18\x01 \x01(\tR\tAccountId\x12\x1a\n" +
 	"\bRoleName\x18\x02 \x01(\tR\bRoleName\x12\x1a\n" +
 	"\bRoleDesc\x18\x03 \x01(\tR\bRoleDesc\"+\n" +
 	"\x0fCreateRoleReply\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\"l\n" +
-	"\x12AddAkSecretRequest\x12\x1a\n" +
-	"\bAconutId\x18\x01 \x01(\tR\bAconutId\x12\x1c\n" +
-	"\tAccessKey\x18\x02 \x01(\tR\tAccessKey\x12\x1c\n" +
-	"\tSecretKey\x18\x03 \x01(\tR\tSecretKey\",\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"\x80\x01\n" +
+	"\x12AddAkSecretRequest\x12\x10\n" +
+	"\x03Uid\x18\x01 \x01(\tR\x03Uid\x12\x1c\n" +
+	"\tAccountId\x18\x02 \x01(\tR\tAccountId\x12\x1c\n" +
+	"\tAccessKey\x18\x03 \x01(\tR\tAccessKey\x12\x1c\n" +
+	"\tSecretKey\x18\x04 \x01(\tR\tSecretKey\",\n" +
 	"\x10AddAkSecretReply\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage2\x93\x01\n" +
 	"\n" +

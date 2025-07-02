@@ -25,7 +25,11 @@ func (j *jwt) GetToken(claims map[string]interface{}, key string) (token string)
 		}
 	}
 	tokenv := jwtv5.NewWithClaims(jwtv5.SigningMethodHS256, jclm)
-	tokenString, _ := tokenv.SignedString([]byte(key))
+	tokenString, err := tokenv.SignedString([]byte(key))
+	if err != nil {
+		fmt.Println("jwt token获取错误", err)
+		return ""
+	}
 	fmt.Println(tokenString)
 	return tokenString
 }

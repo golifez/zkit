@@ -5,6 +5,7 @@ import (
 )
 
 type AwsIam struct {
+	Uid       string
 	AccountId string
 	AccessKey string
 	SecretKey string
@@ -12,7 +13,8 @@ type AwsIam struct {
 
 func NewAddAwsIamFromApi(req *pb.AddAkSecretRequest) *AwsIam {
 	return &AwsIam{
-		AccountId: req.AconutId,
+		Uid:       req.Uid,
+		AccountId: req.AccountId,
 		AccessKey: req.AccessKey,
 		SecretKey: req.SecretKey,
 	}

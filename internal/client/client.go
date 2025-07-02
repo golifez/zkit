@@ -12,7 +12,7 @@ import (
 )
 
 // 移除数据库连接相关函数到 data 层
-var ProviderSet = wire.NewSet(NewData, NewEntClient)
+var ClientProviderSet = wire.NewSet(NewData, NewEntClient)
 
 // Data .
 type Data struct {

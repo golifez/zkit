@@ -12,7 +12,7 @@ service IamService {
 
 //创建角色
 message CreateRoleRequest {
-  string AwsService = 1;
+  string AccountId = 1;
   string RoleName = 2;
   string RoleDesc = 3;
 }
@@ -25,9 +25,10 @@ message CreateRoleReply {
 
 //添加AK秘钥
 message AddAkSecretRequest{
-  string AconutId = 1;
-  string AccessKey = 2;
-  string SecretKey = 3;
+  string Uid = 1;  //用户的唯一ID
+  string AccountId = 2;  //AWS服务名称
+  string AccessKey = 3;
+  string SecretKey = 4;
 }
 
 message AddAkSecretReply{
