@@ -2,6 +2,7 @@ package biz
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/golifez/zkit/internal/conf"
 	"github.com/golifez/zkit/internal/domain"
@@ -35,7 +36,7 @@ func NewAutherUsecase(c *conf.Config, logger log.Logger) *AutherUsecase {
 
 func (a *AutherUsecase) GenToken(ctx context.Context, g *domain.Jwt) (token string, err error) {
 	token = utils.NewJwt().GetToken(g.Claims, g.Key)
-
+	fmt.Printf("test")
 	// if token != "" {
 	// 	return token, err
 	// }
