@@ -1,6 +1,9 @@
 package service
 
-import "github.com/google/wire"
+import (
+	daws "github.com/golifez/zkit/internal/service/aws"
+	"github.com/google/wire"
+)
 
 // ProviderSet is service providers.
-var ProviderSet = wire.NewSet(NewAuthService)
+var SvcProviderSet = wire.NewSet(NewAuthService, daws.NewIamService)

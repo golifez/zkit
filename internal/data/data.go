@@ -1,44 +1,46 @@
 package data
 
 import (
-
-	// init mysql driver
-
 	_ "github.com/go-sql-driver/mysql"
+	dataaws "github.com/golifez/zkit/internal/data/aws"
+	"github.com/google/wire"
 )
 
 // ProviderSet is data providers.
-// var ProviderSet = wire.NewSet(NewData)
+var DataProviderSet = wire.NewSet(
+	// // 从 client 层移回的数据库连接相关函数\
+	// NewEntClient,
+	// NewData,
+	dataaws.NewAwsIamRepo,
+)
 
-// Data .
-type Data struct {
-	// TODO wrapped database client
-	// db *ent.Client
-}
+// // Data .
+// type Data struct {
+// 	DB *ent.Client
+// }
 
-// 初始化数据库连接
-// func NewEntClinet(conf *conf.Data, logger log.Logger) *ent.Client {
+// // // 初始化数据库连接
+// func NewEntClient(conf *conf.Data, logger log.Logger) *ent.Client {
 // 	helper := log.NewHelper(log.With(logger, "module", "user-service/data/ent"))
-// 	clinet, err := ent.Open(
+// 	client, err := ent.Open(
 // 		conf.Database.Driver,
 // 		conf.Database.Source,
 // 	)
 // 	if err != nil {
 // 		helper.Fatal("failed opening connection to sqlite: %v", err)
 // 	}
-// 	if err := clinet.Schema.Create(context.Background(), migrate.WithForeignKeys(false)); err != nil {
+// 	if err := client.Schema.Create(context.Background(), migrate.WithForeignKeys(false)); err != nil {
 // 		helper.Fatal("failed creating schema resources: %v", err)
 // 	}
-// 	return clinet
+// 	return client
 // }
 
-// NewData .
-// func NewData(logger log.Logger) (*Data, func(), error) {
+// // // NewData .
+// func NewData(db *ent.Client, logger log.Logger) (*Data, func(), error) {
 // 	cleanup := func() {
 // 		log.NewHelper(logger).Info("closing the data resources")
-
 // 	}
 // 	return &Data{
-// 		// db: db,
+// 		DB: db,
 // 	}, cleanup, nil
 // }

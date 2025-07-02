@@ -1,6 +1,9 @@
 package biz
 
-import "github.com/google/wire"
+import (
+	bizaws "github.com/golifez/zkit/internal/biz/aws"
+	"github.com/google/wire"
+)
 
-// ProviderSet is biz providers.
-var ProviderSet = wire.NewSet(NewAutherUsecase)
+// BizProviderSet is biz providers.
+var BizProviderSet = wire.NewSet(NewAutherUsecase, bizaws.NewAwsIamUsecase)

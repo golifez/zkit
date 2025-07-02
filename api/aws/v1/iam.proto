@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package aws.v1;
+
+option go_package = "github.com/golifez/zkit/api/aws/v1;v1";
+
+
+service IamService {
+   rpc AddAkSecret (AddAkSecretRequest) returns (AddAkSecretReply); // 创建添加AK秘钥
+   rpc CreateRole (CreateRoleRequest) returns (CreateRoleReply); // 创建角色
+}
+
+//创建角色
+message CreateRoleRequest {
+  string AwsService = 1;
+  string RoleName = 2;
+  string RoleDesc = 3;
+}
+
+
+message CreateRoleReply {
+  string message = 1;
+}
+
+
+//添加AK秘钥
+message AddAkSecretRequest{
+  string AconutId = 1;
+  string AccessKey = 2;
+  string SecretKey = 3;
+}
+
+message AddAkSecretReply{
+  string message = 1;
+}
